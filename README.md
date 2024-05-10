@@ -1,47 +1,68 @@
-# Ex.No: 1  Implementation of Breadth First Search 
-### DATE: 17/02/2024                                                                           
-### REGISTER NUMBER :  212221220051
+# Ex.No: 13 Learning – Use Supervised Learning  
+### DATE:                                                                            
+### REGISTER NUMBER : 212221220051
 ### AIM: 
-To write a python program to implement Breadth first Search. 
-### Algorithm:
-1. Start the program
-2. Create the graph by using adjacency list representation
-3. Define a function bfs and take the set “visited” is empty and “queue” is empty
-4. Search start with initial node and add the node to visited and queue.
-5. For each neighbor node, check node is not in visited then add node to visited and queue list.
-6.  Creating loop to print the visited node.
-7.   Call the bfs function by passing arguments visited, graph and starting node.
-8.   Stop the program.
-### Program:
-```
-graph={
-    '5':['3','7'],
-    '3':['2','4'],
-    '7':['8'],
-    '2':[],
-    '4':['8'],
-    '8':[]
-    }
-visited=[]
-queue=[]
+To write a program to train the classifier for RGB color predection
+###  Algorithm:
+# Step 1: Import Necessary Libraries
+# Step 2: Define or Load the Dataset
+# Step 3: Convert Data to Arrays
+# Step 4: Split the Dataset
+# Step 5: Choose a Classifier
+# Step 6: Train the Classifier
+# Step 7: Take User Input
+# Step 8: Convert User Input to RGB
+# Step 9: Make Prediction
+# Step 10: Display Prediction
 
-def bfs(visited,graph,node):
-    visited.append(node)
-    queue.append(node)
-    while queue: # Creating loop to visit each node
-        m = queue.pop(0)
-        print (m, end = " ")
-        for neighbour in graph[m]:
-            if neighbour not in visited:
-                visited.append(neighbour)
-                queue.append(neighbour)
-print("Following is the Breadth-First Search")
-bfs(visited, graph, '5')
-```
+
+### Program:
+# Import necessary libraries
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+import numpy as np
+
+# Generate a sample dataset (replace this with your actual dataset)
+# Here, we're using RGB values as features
+data = {
+    'red': {'rgb': [255, 0, 0], 'label': 'red'},
+    'green': {'rgb': [0, 255, 0], 'label': 'green'},
+    'blue': {'rgb': [0, 0, 255], 'label': 'blue'},
+    'yellow': {'rgb': [255, 255, 0], 'label': 'yellow'},
+    'purple': {'rgb': [128, 0, 128], 'label': 'purple'},
+    # Add more samples as needed
+}
+
+# Convert data into arrays
+colors = list(data.keys())
+rgb_values = np.array([data[color]['rgb'] for color in colors])
+labels = np.array([data[color]['label'] for color in colors])
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(rgb_values, labels, test_size=0.2, random_state=42)
+
+# Choose a classifier (Decision Tree in this example)
+classifier = DecisionTreeClassifier()
+
+# Train the classifier
+classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+predictions = classifier.predict(X_test)
+
+# Evaluate the accuracy of the classifier
+accuracy = accuracy_score(y_test, predictions)
+print(f"Accuracy: {accuracy}")
+
+# Example: Predict the color of a new RGB value
+new_rgb_value = np.array([[100, 150, 200]])
+predicted_color = classifier.predict(new_rgb_value)
+print(f"Predicted color for RGB {new_rgb_value}: {predicted_color}")
+
+
 ### Output:
 
-![image](https://github.com/HariHaranLK/AI_Lab_2023-24/assets/132996089/f466a893-7d1f-46db-a717-d3e72dc4a709)
-
-
+![image](https://github.com/sathiya7g/AI_Lab_2023-24/blob/main/Screenshot%202023-11-02%20082640.png)
 ### Result:
-Thus the breadth first search order was found sucessfully.
+Thus the system was trained successfully and the prediction was carried out.
